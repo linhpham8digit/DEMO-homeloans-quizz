@@ -35,8 +35,12 @@
       </div>
     </section>
 
-    <aside class="quiz-photo" aria-label="Kien Phan">
-      <img src="assets/img/hero/hero-1-handshake.jpg" alt="Kien Phan receiving an award at the MFAA Excellence Awards 2026" />
+    <!-- slow slideshow of the hero photographs (hero-slides.js), 7 s each -->
+    <aside class="quiz-photo" id="quizSlides" data-interval="7000" aria-label="Kien Phan">
+      <img class="quiz-photo__slide quiz-photo__slide--1 is-active" src="assets/img/hero/hero-1-handshake.jpg" alt="Kien Phan receiving an award at the MFAA Excellence Awards 2026" />
+      <img class="quiz-photo__slide quiz-photo__slide--2" src="assets/img/hero/slide-2-team.webp" alt="" />
+      <img class="quiz-photo__slide quiz-photo__slide--3" src="assets/img/hero/slide-3-award.webp" alt="" />
+      <img class="quiz-photo__slide quiz-photo__slide--4" src="assets/img/hero/slide-4-podium.webp" alt="" />
     </aside>
   </div>
 </main>
@@ -47,5 +51,6 @@
 
 <script src="assets/js/lead.js" defer></script>
 <script src="assets/js/quiz.js" defer></script>
+<script src="assets/js/hero-slides.js" defer></script>
 </body>
 </html>

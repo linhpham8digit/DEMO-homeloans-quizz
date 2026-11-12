@@ -310,6 +310,14 @@ h1, h2, h3 { text-wrap: balance; }
 .quiz-card { background: var(--panel); border-radius: 28px; padding: clamp(22px, 3.4vw, 40px); display: grid; gap: 20px; align-content: start; }
 .quiz-photo { position: relative; border-radius: 28px; overflow: hidden; min-height: 520px; }
 .quiz-photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 44% 28%; transition: transform .7s cubic-bezier(.2, .7, .2, 1); }
+/* quiz photo as a slow slideshow: the same blur-and-fade dissolve as the landing hero, with a gentle push-in */
+.quiz-photo .quiz-photo__slide { opacity: 0; filter: blur(8px); transform: scale(1.06);
+  transition: opacity 1.8s ease, filter 1.8s ease, transform 8s cubic-bezier(.2, .6, .3, 1); }
+.quiz-photo .quiz-photo__slide.is-active { opacity: 1; filter: none; transform: scale(1); }
+/* the 16:9 photos have Kien in the left third: keep him in the frame */
+.quiz-photo .quiz-photo__slide--2 { object-position: 22% 40%; }
+.quiz-photo .quiz-photo__slide--3 { object-position: 14% 30%; }
+.quiz-photo .quiz-photo__slide--4 { object-position: 24% 35%; }
 
 .quiz-body { display: grid; gap: 20px; }
 
@@ -327,6 +335,7 @@ h1, h2, h3 { text-wrap: balance; }
 .progress__seg:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; border-radius: 4px; }
 .progress__row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 24px; }
 .progress__row .back { min-height: 24px; padding: 0; font-size: 13px; }
+.progress__row .progress__label { margin-left: auto; }
 .progress__label { font: 500 11.5px/1 var(--mono); letter-spacing: 1.4px; color: var(--muted); text-transform: uppercase; }
 .quiz-q { font: 400 clamp(24px, 2.4vw, 30px)/1.15 var(--serif); color: var(--ink); }
 .quiz-q:focus { outline: none; }

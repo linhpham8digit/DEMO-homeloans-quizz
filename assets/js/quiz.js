@@ -132,14 +132,15 @@
       bar.appendChild(li);
     }
     wrap.appendChild(bar);
+    // Back on the left (under where you came from), the step count on the right
     var row = el("div", "progress__row");
-    row.appendChild(el("span", "progress__label", "Step " + (stepIndex + 1) + " of " + total));
     if (stepIndex > 0) {
       var b = el("button", "back", "← Back");
       b.type = "button";
       b.addEventListener("click", function () { go(-1); });
       row.appendChild(b);
     }
+    row.appendChild(el("span", "progress__label", "Step " + (stepIndex + 1) + " of " + total));
     wrap.appendChild(row);
     return wrap;
   }
