@@ -738,9 +738,8 @@ h1, h2, h3 { text-wrap: balance; }
   .from-quiz .hero__who-block { flex-direction: row-reverse; justify-content: flex-start; }
 }
 .hero__who-text { display: grid; gap: 2px; }
-/* beside the photo: name, role, then MFAA membership on its own line */
-.hero__who-text .hero__sep { display: none; }
-.hero__who-text .hero__mfaa { display: block; font-weight: 400; color: rgba(255, 255, 255, .78); }
+/* beside the photo: name, role, then the firm and the 2025 award, each on its own line */
+.hero__who-text .hero__mfaa { display: block; font: 400 clamp(14px, min(2vh, 1.15vw), 18px)/1.35 var(--sans); color: rgba(255, 255, 255, .78); text-wrap: balance; }
 /* round photo of Kien to the left of his name; decorative, his name sits right beside it */
 .hero__avatar { flex: none; width: clamp(64px, min(6vw, 11vh), 96px); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; object-position: 50% 30%; border: 2px solid rgba(255, 255, 255, .85); box-shadow: 0 6px 18px rgba(0, 15, 35, .35); }
 .hero__who-name { font: 400 clamp(30px, min(3.4vw, 5.6vh), 48px)/1.05 var(--serif); letter-spacing: -.01em; color: #65ccfc; }
