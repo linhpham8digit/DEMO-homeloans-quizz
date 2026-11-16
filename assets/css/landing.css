@@ -88,7 +88,7 @@ h1, h2, h3 { text-wrap: balance; }
 .brand--light .brand__name { color: var(--white); }
 .brand--light .brand__sub { color: rgba(255, 255, 255, .78); }
 .logo { display: block; height: 60px; width: auto; }
-.hero__brand .logo { height: clamp(44px, 6.4vh, 60px); }
+.hero__brand .logo { height: clamp(44px, calc(var(--u, 1vh) * 6.4), 60px); }
 .site-foot .logo { height: 60px; }
 .award-pair { display: block; height: 72px; width: auto; }
 .page-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 28px; }
@@ -102,7 +102,7 @@ h1, h2, h3 { text-wrap: balance; }
   height: 100vh; height: 100svh; min-height: 620px;
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, 430px); grid-template-rows: auto 1fr auto auto;
   column-gap: clamp(32px, 5vw, 80px);
-  padding: clamp(20px, 3.2vh, 32px) var(--edge) clamp(24px, 4.5vh, 48px);
+  padding: clamp(20px, calc(var(--u, 1vh) * 3.2), 32px) var(--edge) clamp(24px, calc(var(--u, 1vh) * 4.5), 48px);
 }
 .hero__media { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: var(--ink); }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; animation: hero-settle 1.6s cubic-bezier(.2, .7, .2, 1) both; }
@@ -118,31 +118,34 @@ h1, h2, h3 { text-wrap: balance; }
   /* The form is wider than the 430px it used to be; that extra width comes out of the right
      margin first, so the left cluster keeps the room and sizes it had. */
   .hero { padding-right: max(var(--gutter), calc(var(--edge) - (var(--form-w) - 430px))); }
+  /* a little shorter than the screen, so the top of the next section peeks in under the hero */
+  /* every size inside the hero is measured against its own height, so the content shrinks with it */
+  .hero { --hh: max(calc(100svh - 120px), 720px); --u: calc(var(--hh) / 100); height: var(--hh); min-height: 0; }
   .hero .hero__copy, .hero .hero__proof { max-width: calc(var(--inner) - 430px - clamp(32px, 5vw, 80px)); }
   /* badges never wider than the text column: a row is about 4.7 badge-heights wide */
-  .hero .hero-awards__badge { height: min(clamp(100px, min(10vw, 17vh), 170px), calc((var(--inner) - 430px - clamp(32px, 5vw, 80px)) / 4.25)); }
+  .hero .hero-awards__badge { height: min(clamp(100px, min(10vw, calc(var(--u, 1vh) * 17)), 170px), calc((var(--inner) - 430px - clamp(32px, 5vw, 80px)) / 4.25)); }
 }
 .hero__brand { grid-column: 1; grid-row: 1; align-self: start; }
-.hero__copy { grid-column: 1; grid-row: 3; display: grid; gap: clamp(12px, 2vh, 18px); justify-items: start; color: var(--white); max-width: 560px; }
-.hero__title { font: 400 clamp(36px, min(4.2vw, 6.4vh), 62px)/1.04 var(--serif); letter-spacing: -.01em; color: var(--white); text-wrap: balance; }
-.hero__sub { font-size: clamp(15px, 2vh, 17px); line-height: 1.55; color: rgba(255, 255, 255, .9); max-width: 44ch; }
-.hero__proof { grid-column: 1; grid-row: 4; display: flex; align-items: center; gap: 28px; margin-top: clamp(18px, 3.5vh, 36px); padding-top: clamp(16px, 2.6vh, 24px); border-top: 1px solid rgba(255, 255, 255, .22); color: var(--white); max-width: 560px; }
+.hero__copy { grid-column: 1; grid-row: 3; display: grid; gap: clamp(12px, calc(var(--u, 1vh) * 2), 18px); justify-items: start; color: var(--white); max-width: 560px; }
+.hero__title { font: 400 clamp(36px, min(4.2vw, calc(var(--u, 1vh) * 6.4)), 62px)/1.04 var(--serif); letter-spacing: -.01em; color: var(--white); text-wrap: balance; }
+.hero__sub { font-size: clamp(15px, calc(var(--u, 1vh) * 2), 17px); line-height: 1.55; color: rgba(255, 255, 255, .9); max-width: 44ch; }
+.hero__proof { grid-column: 1; grid-row: 4; display: flex; align-items: center; gap: 28px; margin-top: clamp(18px, calc(var(--u, 1vh) * 3.5), 36px); padding-top: clamp(16px, calc(var(--u, 1vh) * 2.6), 24px); border-top: 1px solid rgba(255, 255, 255, .22); color: var(--white); max-width: 560px; }
 .hero__who { font-size: 14px; line-height: 1.5; color: rgba(255, 255, 255, .82); }
 .hero__who b { display: block; font: 700 17px/1.3 var(--sans); color: var(--white); }
 .hero__award { display: flex; align-items: center; gap: 12px; padding-left: 28px; border-left: 1px solid rgba(255, 255, 255, .22); }
-.hero__award img { width: clamp(64px, 9vh, 84px); height: auto; flex: none; }
+.hero__award img { width: clamp(64px, calc(var(--u, 1vh) * 9), 84px); height: auto; flex: none; }
 .hero__award p { font-size: 13.5px; line-height: 1.45; color: rgba(255, 255, 255, .82); }
 .hero__award b { display: block; font-size: 14.5px; font-weight: 600; color: var(--white); }
 .hero__form { grid-column: 2; grid-row: 1 / 5; align-self: center; }
 
-.hero__role { font: 500 clamp(17px, 2.4vh, 22px)/1.35 var(--sans); color: rgba(255, 255, 255, .92); margin-top: 6px; }
+.hero__role { font: 500 clamp(17px, calc(var(--u, 1vh) * 2.4), 22px)/1.35 var(--sans); color: rgba(255, 255, 255, .92); margin-top: 6px; }
 /* role and MFAA membership on one line on wide screens; on phones MFAA drops to its own line */
 .hero__sep { margin-inline: .35em; color: rgba(255, 255, 255, .45); font-weight: 300; }
-@media (min-width: 901px) { .hero .hero__headline { white-space: nowrap; } .hero .hero__role { white-space: nowrap; font-size: clamp(15px, min(2.4vh, 1.35vw), 22px); } }
+@media (min-width: 901px) { .hero .hero__headline { white-space: nowrap; } .hero .hero__role { white-space: nowrap; font-size: clamp(15px, min(calc(var(--u, 1vh) * 2.4), 1.35vw), 22px); } }
 @media (max-width: 900px) { .hero__sep { display: none; } .hero__mfaa { display: block; } }
 
 /* rotating award badges, like the Awards band on kienphan.com.au */
-.hero-awards { display: grid; gap: clamp(10px, 1.8vh, 16px); }
+.hero-awards { display: grid; gap: clamp(10px, calc(var(--u, 1vh) * 1.8), 16px); }
 .hero-awards__head { font-size: 14px; color: rgba(255, 255, 255, .8); }
 .hero-awards__head b { color: var(--white); font-weight: 600; margin-right: 4px; }
 .hero-awards__stage { display: grid; }
@@ -150,7 +153,7 @@ h1, h2, h3 { text-wrap: balance; }
 .hero-awards__set.is-active { opacity: 1; visibility: visible; }
 .hero-awards__label { font: 500 11px/1 var(--mono); letter-spacing: 1.6px; text-transform: uppercase; color: var(--soft); }
 .hero-awards__row { display: flex; align-items: center; flex-wrap: nowrap; padding-inline: 8px; }
-.hero-awards__badge { height: clamp(100px, min(10vw, 17vh), 170px); width: auto; object-fit: contain; margin-inline: -6px; }
+.hero-awards__badge { height: clamp(100px, min(10vw, calc(var(--u, 1vh) * 17)), 170px); width: auto; object-fit: contain; margin-inline: -6px; }
 .hero-awards__badge--wide { margin-inline: -22px; }
 .hero-awards__badge--pair { margin-inline: -8px 0; }
 .hero-awards__badge--round { border-radius: 50%; }
@@ -165,11 +168,11 @@ h1, h2, h3 { text-wrap: balance; }
 .hero-awards__dot:hover::before { background: rgba(255, 255, 255, .6); }
 .hero-awards__dot.is-active::before { width: 22px; background: var(--white); }
 
-.hero__role { font: 500 clamp(17px, 2.4vh, 22px)/1.35 var(--sans); color: rgba(255, 255, 255, .92); margin-top: 6px; }
+.hero__role { font: 500 clamp(17px, calc(var(--u, 1vh) * 2.4), 22px)/1.35 var(--sans); color: rgba(255, 255, 255, .92); margin-top: 6px; }
 
 
 /* short laptop screens (768px and less): tighten the form so the hero still fits one screen */
-@media (min-width: 901px) and (max-height: 880px) {
+@media (min-width: 901px) and (max-height: 1000px) {
   .hero .form-card { padding: 16px 22px 14px; gap: 8px; }
   .hero .form-card__title { font-size: 21px; }
   .hero .lead-form { gap: 5px 12px; }
@@ -202,19 +205,19 @@ h1, h2, h3 { text-wrap: balance; }
 .hero__form[data-enter] { animation: rise .9s .2s cubic-bezier(.2, .7, .2, 1) both; }
 .hero__form[data-enter] > * { animation: none; }
 
-.form-card { background: var(--white); border-radius: 24px; padding: clamp(20px, 2.8vh, 32px) clamp(22px, 2.2vw, 34px) clamp(18px, 2.4vh, 28px); display: grid; gap: clamp(10px, 1.6vh, 16px); box-shadow: 0 20px 50px rgba(0, 15, 35, .18); }
-.form-card__title { font: 400 clamp(23px, 3.2vh, 30px)/1.15 var(--serif); color: var(--ink); }
+.form-card { background: var(--white); border-radius: 24px; padding: clamp(20px, calc(var(--u, 1vh) * 2.8), 32px) clamp(22px, 2.2vw, 34px) clamp(18px, calc(var(--u, 1vh) * 2.4), 28px); display: grid; gap: clamp(10px, calc(var(--u, 1vh) * 1.6), 16px); box-shadow: 0 20px 50px rgba(0, 15, 35, .18); }
+.form-card__title { font: 400 clamp(23px, calc(var(--u, 1vh) * 3.2), 30px)/1.15 var(--serif); color: var(--ink); }
 .callback { display: inline-flex; align-items: center; gap: 9px; justify-self: start; font-size: 13px; color: var(--navy); background: var(--mist); border-radius: 100px; padding: 4px 13px 4px 4px; }
 .callback img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; }
 
 /* ---------- form fields (shared by the full form and the quiz) ---------- */
-.lead-form { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(6px, 1.1vh, 10px) 12px; }
+.lead-form { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(6px, calc(var(--u, 1vh) * 1.1), 10px) 12px; }
 .f { display: grid; gap: 4px; min-width: 0; align-content: end; }
 .f--full { grid-column: 1 / -1; }
-.f__label { font-size: clamp(12.5px, 1.6vh, 14px); font-weight: 500; color: var(--ink); line-height: 1.35; }
+.f__label { font-size: clamp(12.5px, calc(var(--u, 1vh) * 1.6), 14px); font-weight: 500; color: var(--ink); line-height: 1.35; }
 .f__label i { font-style: normal; color: var(--muted); font-weight: 400; }
 .f input, .f select, .f textarea {
-  width: 100%; min-height: 44px; height: clamp(44px, 5.4vh, 54px); padding: 9px 16px; font-size: 16px;
+  width: 100%; min-height: 44px; height: clamp(44px, calc(var(--u, 1vh) * 5.4), 54px); padding: 9px 16px; font-size: 16px;
   border: 1px solid transparent; border-radius: 12px;
   background: var(--panel); font-size: 15px; color: var(--ink);
   transition: border-color .15s, background-color .15s;
@@ -243,7 +246,7 @@ h1, h2, h3 { text-wrap: balance; }
 .yn__opts input:focus-visible + span { outline: 2px solid var(--ocean); outline-offset: 2px; }
 
 .gotcha { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-.lead-form .btn { grid-column: 1 / -1; margin-top: 4px; width: 100%; min-height: clamp(48px, 6vh, 58px); font-size: 16px; }
+.lead-form .btn { grid-column: 1 / -1; margin-top: 4px; width: 100%; min-height: clamp(48px, calc(var(--u, 1vh) * 6), 58px); font-size: 16px; }
 .form-note { grid-column: 1 / -1; text-align: center; font-size: 12.5px; color: var(--navy); }
 .form-legal { grid-column: 1 / -1; text-align: center; font-size: 11.5px; line-height: 1.45; color: var(--muted); }
 .form-status { grid-column: 1 / -1; font-size: 13px; color: var(--danger); text-align: center; }
@@ -707,7 +710,7 @@ h1, h2, h3 { text-wrap: balance; }
   .from-quiz .hero__media::after { background:
     linear-gradient(to left, rgba(0, 15, 35, .88) 0%, rgba(0, 25, 50, .72) 34%, rgba(0, 40, 70, .2) 60%, rgba(0, 40, 70, 0) 75%),
     linear-gradient(to top, rgba(0, 15, 35, .6) 0%, rgba(0, 15, 35, 0) 40%); }
-  .from-quiz .hero .hero-awards__badge { height: clamp(100px, min(10vw, 17vh), 150px); }
+  .from-quiz .hero .hero-awards__badge { height: clamp(100px, min(10vw, calc(var(--u, 1vh) * 17)), 150px); }
   /* everything in the cluster sits against the right edge */
   .from-quiz .hero .hero__copy { justify-items: end; text-align: right; }
   .from-quiz .hero .hero__proof { justify-content: flex-end; }
@@ -728,8 +731,8 @@ h1, h2, h3 { text-wrap: balance; }
 /* ---------- landing hero: the headline leads, Kien Phan sits under it ----------
    The form card carries the colour logo, so the white logo on the photograph only shows
    on the version reached from the quiz, which has no form. */
-.hero__headline { font: 400 clamp(40px, min(4.1vw, 7.6vh), 68px)/1.02 var(--serif); letter-spacing: -.015em; color: var(--white); }
-.hero__who-block { --avatar: clamp(64px, min(6vw, 11vh), 96px); --who-gap: clamp(12px, 1.4vw, 20px); container-type: inline-size; display: flex; align-items: center; gap: var(--who-gap); justify-self: stretch; margin-top: clamp(6px, 1.6vh, 16px); padding-top: clamp(14px, 2.4vh, 24px); border-top: 1px solid rgba(255, 255, 255, .22); }
+.hero__headline { font: 400 clamp(40px, min(4.1vw, calc(var(--u, 1vh) * 7.6)), 68px)/1.02 var(--serif); letter-spacing: -.015em; color: var(--white); }
+.hero__who-block { --avatar: clamp(64px, min(6vw, calc(var(--u, 1vh) * 11)), 96px); --who-gap: clamp(12px, 1.4vw, 20px); container-type: inline-size; display: flex; align-items: center; gap: var(--who-gap); justify-self: stretch; margin-top: clamp(6px, calc(var(--u, 1vh) * 1.6), 16px); padding-top: clamp(14px, calc(var(--u, 1vh) * 2.4), 24px); border-top: 1px solid rgba(255, 255, 255, .22); }
 /* the line runs the full width like the one above the awards. In the right-aligned version
    (from the quiz, desktop) the block sits at the right with the photo on the right of the text. */
 @media (min-width: 901px) {
@@ -746,11 +749,11 @@ h1, h2, h3 { text-wrap: balance; }
 }
 /* round photo of Kien to the left of his name; decorative, his name sits right beside it */
 .hero__avatar { flex: none; width: var(--avatar); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; object-position: 50% 30%; border: 2px solid rgba(255, 255, 255, .85); box-shadow: 0 6px 18px rgba(0, 15, 35, .35); }
-.hero__who-name { font: 400 clamp(30px, min(3.4vw, 5.6vh), 48px)/1.05 var(--serif); letter-spacing: -.01em; color: #65ccfc; }
+.hero__who-name { font: 400 clamp(30px, min(3.4vw, calc(var(--u, 1vh) * 5.6)), 48px)/1.05 var(--serif); letter-spacing: -.01em; color: #65ccfc; }
 .hero__who-block .hero__role { margin-top: 0; }
 .hero__brand { display: none; }
 .from-quiz .hero__brand { display: block; }
-.form-card__logo { display: block; height: clamp(44px, min(7.4vh, 4.6vw), 76px); width: auto; justify-self: start; }
+.form-card__logo { display: block; height: clamp(44px, min(calc(var(--u, 1vh) * 7.4), 4.6vw), 76px); width: auto; justify-self: start; }
 .form-card.is-done .form-card__logo { justify-self: center; }
 @media (max-width: 900px) {
   .hero__headline { font-size: clamp(36px, 10vw, 56px); }
