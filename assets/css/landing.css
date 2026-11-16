@@ -643,8 +643,6 @@ h1, h2, h3 { text-wrap: balance; }
   padding: 40px 40px 36px; display: flex; flex-direction: column; justify-content: space-between;
   text-decoration: none; color: inherit; transition: background-color .15s ease-out;
 }
-.review-card:hover { background: var(--mist); }
-.review-card:active { background: var(--ice); transition-duration: .08s; }
 .review-card__head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
 .review-card__name { font: 700 20px/1.3 var(--sans); color: var(--ink); }
 .review-card__detail { font: 600 14px/1.45 var(--sans); color: var(--ocean); }
