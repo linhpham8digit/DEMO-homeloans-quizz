@@ -21,7 +21,7 @@
   var SMSF_Q1 = ["Buy premises for my own business", "Buy commercial property as an investment",
                  "Refinance my SMSF’s existing loan", "Not sure yet"];
 
-  function steps(ans) {
+  function allSteps(ans) {
     if (PAGE === "home-loans") {
       var refi = ans.goal === "Refinance my loan";
       return [
@@ -57,6 +57,17 @@
       membersStep,
       stateStep
     ];
+  }
+
+  // Not sure on step 4 means the visitor cannot size the deal yet, so step 5 is skipped
+  // and the quiz goes straight to step 6. Any answer already given to step 5 is dropped.
+  function steps(ans) {
+    var list = allSteps(ans);
+    if (list.length > 4 && ans[list[3].key] === "Not sure") {
+      delete ans[list[4].key];
+      list.splice(4, 1);
+    }
+    return list;
   }
 
   function isRefi(goal) { return goal === "Refinance my loan" || goal === SMSF_Q1[2]; }
@@ -132,7 +143,7 @@
       bar.appendChild(li);
     }
     wrap.appendChild(bar);
-    // Back on the left (under where you came from), the step count on the right
+    // Back on the left (under where you came from), nothing on the right
     var row = el("div", "progress__row");
     if (stepIndex > 0) {
       var b = el("button", "back", "← Back");
@@ -140,7 +151,6 @@
       b.addEventListener("click", function () { go(-1); });
       row.appendChild(b);
     }
-    row.appendChild(el("span", "progress__label", "Step " + (stepIndex + 1) + " of " + total));
     wrap.appendChild(row);
     return wrap;
   }
