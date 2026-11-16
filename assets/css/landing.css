@@ -782,3 +782,18 @@ h1, h2, h3 { text-wrap: balance; }
   .footer__fine { flex-direction: column; gap: 10px; }
   .footer__tagline { max-width: 100%; }
 }
+
+/* ---------- desktop hero balance: smaller copy on the left so the photograph shows,
+   a wider form, both sitting on the same bottom line, and a tighter stats band so a
+   strip of it shows as soon as the page opens ---------- */
+@media (min-width: 901px) {
+  .hero { --form-w: clamp(480px, 46vw, 700px); --hh: max(calc(100svh - 90px), 740px); }
+  .hero__form { align-self: end; margin-bottom: 12px; }
+  .hero .hero__headline { font-size: clamp(30px, min(3.3vw, calc(var(--u, 1vh) * 6)), 54px); }
+  .hero .hero__who-block { --avatar: clamp(50px, min(4.8vw, calc(var(--u, 1vh) * 9)), 76px); margin-top: clamp(10px, calc(var(--u, 1vh) * 2), 20px); }
+  .hero .hero__who-name { font-size: clamp(26px, min(2.8vw, calc(var(--u, 1vh) * 4.6)), 40px); }
+  .hero .hero__role { font-size: clamp(14px, min(calc(var(--u, 1vh) * 2), 1.2vw), 19px); }
+  .hero .hero-awards__badge { height: min(clamp(80px, min(8vw, calc(var(--u, 1vh) * 13)), 136px), calc((var(--inner) - 430px - clamp(32px, 5vw, 80px)) / 4.25)); }
+  .hero .hero__proof { margin-top: clamp(12px, calc(var(--u, 1vh) * 2.4), 26px); padding-top: clamp(12px, calc(var(--u, 1vh) * 2), 20px); }
+  .stats { padding-block: clamp(20px, 2.4vw, 32px) clamp(32px, 3.4vw, 48px); }
+}
