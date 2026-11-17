@@ -815,3 +815,9 @@ h1, h2, h3 { text-wrap: balance; }
 @media (min-width: 901px) {
   .from-quiz .hero .hero__headline { font-size: clamp(40px, min(4.6vw, calc(var(--u, 1vh) * 8.6), calc(640px / 9.6)), 76px); }
 }
+
+/* After-quiz greeting: mode.js marks the page greet-pending in the head, so the headline is not
+   drawn until after-quiz.js has put the visitor's name in. If that script never runs (blocked,
+   slow network), the headline shows anyway after a moment. */
+.greet-pending .hero__headline { visibility: hidden; animation: greet-failsafe 0s 1.5s forwards; }
+@keyframes greet-failsafe { to { visibility: visible; } }
