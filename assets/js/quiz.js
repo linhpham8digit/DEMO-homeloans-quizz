@@ -316,50 +316,12 @@
       btn.classList.add("is-loading");
       btn.setAttribute("aria-busy", "true");
       var rec = buildRecord(form);
-      // Nothing is kept for the form page: it opens empty. The quiz says it is done first.
-      setTimeout(function () { renderDone(rec); }, reduce ? 0 : 450);
+      // Straight on to the landing page, which opens with "Done, thanks <name>" (after-quiz.js).
+      L.submit(rec, THANKS);
     });
 
     body.appendChild(form);
     if (focus) q.focus({ preventScroll: true });
-  }
-
-  /* ---------- done: confirm first, then move on to the landing page ---------- */
-  var DONE_MS = 3500;
-  function renderDone(rec) {
-    var gone = false;
-    function leave() { if (gone) return; gone = true; L.submit(rec, THANKS); }
-
-    body.textContent = "";
-    body.classList.remove("is-out-fwd", "is-out-back", "is-in-fwd", "is-in-back");
-    if (!reduce) { void body.offsetWidth; body.classList.add("is-in-fwd"); }
-
-    var wrap = el("div", "quiz-done");
-    wrap.setAttribute("role", "status");
-    var tick = el("span", "quiz-done__tick");
-    tick.setAttribute("aria-hidden", "true");
-    wrap.appendChild(tick);
-    var title = el("h2", "quiz-q quiz-done__title", tie("Done, thanks " + (rec.first_name || "") + ". We have your details."));
-    title.tabIndex = -1;
-    wrap.appendChild(title);
-    wrap.appendChild(el("p", "quiz-done__text", tie("Kien’s team will call you within 15 minutes in business hours to walk through your options.")));
-
-    var next = el("div", "quiz-done__next");
-    next.appendChild(el("span", "quiz-done__label", PAGE === "smsf" ? "Taking you to the SMSF page" : "Taking you to Kien’s page"));
-    var bar = el("span", "quiz-done__bar");
-    var fill = el("i");
-    fill.style.animationDuration = DONE_MS + "ms";
-    bar.appendChild(fill);
-    next.appendChild(bar);
-    var go = el("button", "back quiz-done__go", "Go now →");
-    go.type = "button";
-    go.addEventListener("click", leave);
-    next.appendChild(go);
-    wrap.appendChild(next);
-
-    body.appendChild(wrap);
-    title.focus({ preventScroll: true });
-    setTimeout(leave, DONE_MS);
   }
 
   function buildRecord(form) {
