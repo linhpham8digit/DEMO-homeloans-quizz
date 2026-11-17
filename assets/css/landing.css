@@ -821,3 +821,16 @@ h1, h2, h3 { text-wrap: balance; }
    slow network), the headline shows anyway after a moment. */
 .greet-pending .hero__headline { visibility: hidden; animation: greet-failsafe 0s 1.5s forwards; }
 @keyframes greet-failsafe { to { visibility: visible; } }
+
+/* ---------- desktop hero, balanced: the left cluster and the form sit as one group, centred, with equal
+   margins on both sides. The left column stops at 640px, so a wide screen adds margin, not a hole
+   between the headline and the form. (The after-quiz page keeps its own layout.) ---------- */
+@media (min-width: 901px) {
+  html:not(.from-quiz) .hero {
+    --gap: clamp(32px, 4vw, 56px);
+    --pad: max(40px, calc((100vw - 640px - var(--gap) - var(--form-w)) / 2));
+    --colw: min(640px, calc(100vw - 2 * var(--pad) - var(--form-w) - var(--gap)));
+    padding-left: var(--pad); padding-right: var(--pad); column-gap: var(--gap);
+  }
+  html:not(.from-quiz) .hero .hero__headline { font-size: clamp(30px, min(calc(var(--colw) / 9.3), calc(var(--u, 1vh) * 6.8)), 68px); }
+}
