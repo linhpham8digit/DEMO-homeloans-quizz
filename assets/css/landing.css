@@ -410,10 +410,11 @@ h1, h2, h3 { text-wrap: balance; }
 }
 
 @media (max-width: 900px) {
-  .hero__media .hero__slide--1 { object-position: 27% 30%; }
-  .hero__media .hero__slide--2 { object-position: 35% 40%; }
-  .hero__media .hero__slide--3 { object-position: 24% 8%; }
-  .hero__media .hero__slide--4 { object-position: 16% 8%; }
+  /* the speaker sits in the middle of the band: each frame is centred on him (the pair, for the handshake) */
+  .hero__media .hero__slide--1 { object-position: 17% 30%; }
+  .hero__media .hero__slide--2 { object-position: 22% 40%; }
+  .hero__media .hero__slide--3 { object-position: 9% 8%; }
+  .hero__media .hero__slide--4 { object-position: 25% 8%; }
   /* phone and tablet: the photograph fills the top band edge to edge, the form follows on white */
   .hero { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto; height: auto; min-height: 0; overflow: visible; padding: 0; row-gap: 0; }
   .hero__media { position: relative; inset: auto; z-index: -1; grid-column: 1; grid-row: 1 / 3; }
@@ -435,7 +436,7 @@ h1, h2, h3 { text-wrap: balance; }
   .hero__media img { position: absolute; inset: 0; }
   .hero__media::after { background: linear-gradient(to top, rgba(0, 15, 35, .82) 0%, rgba(0, 15, 35, .35) 55%, rgba(0, 15, 35, .25) 100%); }
   .hero__brand { padding: 22px var(--gutter) 0; }
-  .hero__copy { padding: 72px var(--gutter) 64px; }
+  .hero__copy { padding: 72px max(var(--gutter), 28px) 64px; }
   .hero__form { grid-column: 1; grid-row: 3; padding: 0 12px; margin-top: -36px; position: relative; }
   .form-card { padding: 24px 20px 22px; box-shadow: 0 14px 36px rgba(0, 15, 35, .14); }
   .reviews, .reviews--two { grid-template-columns: minmax(0, 1fr); }
@@ -455,13 +456,13 @@ h1, h2, h3 { text-wrap: balance; }
   .brand__mark { width: 30px; height: 24px; }
   .award-chip { font-size: 11px; padding: 6px 10px; gap: 5px; }
   .hero__brand { padding-top: 18px; }
-  .hero__copy { padding: 44px var(--gutter) 56px; gap: 12px; }
+  .hero__copy { padding: 44px 24px 56px; gap: 12px; }
   .hero__copy .pill-label { display: none; }
   .hero__proof { gap: 16px; }
   .hero-awards__badge { height: clamp(70px, 21vw, 92px); margin-inline: -4px; }
   .hero-awards__badge--wide { margin-inline: -14px; }
   .hero__award { padding-left: 0; border-left: 0; }
-  .hero__title { font-size: clamp(28px, 8.4vw, 36px); }
+  .hero__title { font-size: clamp(26px, 7.6vw, 36px); }
   .hero__sub { display: none; }
   .hero__form { padding: 0 6px; }
   .form-card__title { font-size: 24px; }
@@ -756,7 +757,7 @@ h1, h2, h3 { text-wrap: balance; }
 .form-card__logo { display: block; height: clamp(44px, min(calc(var(--u, 1vh) * 7.4), 4.6vw), 76px); width: auto; justify-self: start; }
 .form-card.is-done .form-card__logo { justify-self: center; }
 @media (max-width: 900px) {
-  .hero__headline { font-size: clamp(36px, 10vw, 56px); }
+  .hero__headline { font-size: clamp(30px, 8.4vw, 56px); }
   .hero__who-name { font-size: clamp(28px, 8vw, 36px); }
   .hero__who-block { --avatar: clamp(60px, 17vw, 76px); }
   .form-card__logo { height: 54px; }
