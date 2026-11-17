@@ -59,11 +59,11 @@
     ];
   }
 
-  // Not sure on step 4 means the visitor cannot size the deal yet, so step 5 is skipped
-  // and the quiz goes straight to step 6. Any answer already given to step 5 is dropped.
+  // Home loans only: Not sure on step 4 (the deposit) skips step 5 and goes straight to step 6.
+  // Any answer already given to step 5 is dropped. The SMSF quiz never skips a step.
   function steps(ans) {
     var list = allSteps(ans);
-    if (list.length > 4 && ans[list[3].key] === "Not sure") {
+    if (PAGE === "home-loans" && list.length > 4 && ans[list[3].key] === "Not sure") {
       delete ans[list[4].key];
       list.splice(4, 1);
     }
