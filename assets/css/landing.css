@@ -809,3 +809,9 @@ h1, h2, h3 { text-wrap: balance; }
   .hero__media .hero__slide--3 { object-position: 30% 8%; }
   .hero__media .hero__slide--4 { object-position: 30% 8%; }
 }
+
+/* after-quiz page (no form): the headline has the whole right column to itself, so it runs larger.
+   The profile block and the badges keep their size. */
+@media (min-width: 901px) {
+  .from-quiz .hero .hero__headline { font-size: clamp(40px, min(4.6vw, calc(var(--u, 1vh) * 8.6), calc(640px / 9.6)), 76px); }
+}
