@@ -59,13 +59,13 @@
     ];
   }
 
-  // Home loans only: Not sure on step 4 (the deposit) skips step 5 and goes straight to step 6.
-  // Any answer already given to step 5 is dropped. The SMSF quiz never skips a step.
+  // Home loans only: Not sure on step 3 (the price) skips step 4 (the deposit) and goes straight
+  // to step 5. Any answer already given to step 4 is dropped. The SMSF quiz never skips a step.
   function steps(ans) {
     var list = allSteps(ans);
-    if (PAGE === "home-loans" && list.length > 4 && ans[list[3].key] === "Not sure") {
-      delete ans[list[4].key];
-      list.splice(4, 1);
+    if (PAGE === "home-loans" && list.length > 3 && ans[list[2].key] === "Not sure") {
+      delete ans[list[3].key];
+      list.splice(3, 1);
     }
     return list;
   }
